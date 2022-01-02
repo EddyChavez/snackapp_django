@@ -1,4 +1,3 @@
-
 import random
 import string
 from email.mime.image import MIMEImage
@@ -27,6 +26,7 @@ from .serializers import (AdminSerializer, ChangePasswordSerializer,
                           RetrieveMembersSerializer, TribesSerializer,
                           UserSerializer)
 
+from twilio.rest import Client
 
 class LoginAPI(KnoxLoginView):
     permission_classes = (permissions.AllowAny,)
@@ -565,3 +565,19 @@ class Contact(generics.GenericAPIView):
         msg.send()
 
         return Response({'response': 'ok'})
+class Alertas(CreateAPIView):       
+    # Find your Account SID and Auth Token at twilio.com/console
+    # and set the environment variables. See http://twil.io/secure
+    serializer_class = InvitationSerializer
+    def post(self, request,  *args, **kwargs):
+        account_sid = "AC452c9ffe312cd38c51a9296e6511fa9e" #os.environ['AC452c9ffe312cd38c51a9296e6511fa9e']
+        auth_token = "b43d05a3a2202bc8a106d76d4d76eddb" #os.environ['b43d05a3a2202bc8a106d76d4d76eddb']
+        client = Client(account_sid, auth_token)
+
+        message = client.messages.create(
+                              body='Fuiste invitado al Evento Tamales participa en el siguiente enlace goevents.tech',
+                              from_='whatsapp:+14155238886',
+                              to='whatsapp:+5214775808404'
+                          )
+
+        return Response({message.sid})

@@ -16,6 +16,7 @@ urlpatterns = [
     re_path('', include('applications.events.urls')),
     re_path('', include('applications.orders.urls')),
     re_path('', include('applications.payments.urls')),
+    re_path('', include('applications.products.urls')),
 
     # urls para ckeditor
     re_path(r'^ckeditor/', include('ckeditor_uploader.urls')),

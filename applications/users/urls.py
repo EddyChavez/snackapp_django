@@ -113,4 +113,10 @@ urlpatterns = [
         'api/users/contact/',
         views.Contact.as_view(),
     ),
+    # Prueba de Mensaje WhatsApp
+    path(
+        'api/tribes/alertas/',
+        views.Alertas.as_view(),
+    ),
+    # Prueba Agregar producto    
 ]

@@ -19,3 +19,5 @@ requests==2.26.0
 sqlparse==0.4.1
 Unipath==1.1
 urllib3==1.26.6
+PyJWT==2.3.0
+twilio==7.4.0
